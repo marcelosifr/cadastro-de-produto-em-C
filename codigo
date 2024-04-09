@@ -1,0 +1,148 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include <string.h>
+#define SIZE 200
+
+char nome[SIZE][50];
+int quantidade[SIZE];
+float preço[SIZE];
+int op;
+int menu;
+void cadastro();
+void pesquisa();
+void listar();
+//void alterar();
+//void remover();
+void fechar();
+
+
+int main(void)
+{
+    
+    printf("Bem vindo ao gerenciamento de produtos");
+    printf("\nPor favor escolha uma opção:");
+    printf("\n1 - Cadastrar novo produto");
+    printf("\n2 - Pesquisar produto");
+    printf("\n3 - Listar todos os produtos");
+   // printf("\n4 - Alterar produto cadastrado");
+    //printf("\n5 - Remover produto cadastrado");
+    printf("\n6 - Fechar sistema gerenciador \n");
+    scanf("%d", &menu);
+
+    
+    switch (menu){
+        case 1:
+            cadastro();
+        break;
+            
+        case 2:
+            pesquisa();
+        break;
+        
+        case 3:
+            listar();
+        break;
+        
+        case 4:
+      //      alterar();
+        break;
+        
+        case 5:
+      //      remover();
+        break;
+        
+        case 6:
+            fechar();
+        break;
+    }
+    
+    return 0;
+}
+
+
+void cadastro(){
+    static int linha;
+    
+    printf("Cadastrar um novo produto?\n1- Sim\n2- Não\n");
+    scanf("%d", &op);
+    
+    if(op==1){
+        printf("Digite o nome do produto:");
+        getchar(); // Limpar o buffer do teclado
+        fgets(nome[linha], 50, stdin);
+        printf("\nDigite a quantidade do produto:");
+        scanf("%d", &quantidade[linha]);
+        printf("\nDigite o valor do produto:");
+        scanf("%.2f", &preço[linha]);
+        printf("\nProduto cadastrado com sucesso!\n");
+        linha++;
+        cadastro();
+    } else {
+        main();
+    }
+}
+
+void pesquisa(){
+    char nomePesquisa[50];
+    int i;
+    int opesq;
+    
+    printf("Pesquisar um novo produto?\n1- Sim\n2- Não\n");
+    scanf("%d", &opesq);
+
+    if(opesq==1){ 
+        printf("Digite o nome do produto que deseja visualizar:\n");
+        getchar(); // Limpar o buffer do teclado
+        fgets(nomePesquisa, 50, stdin);
+            
+        for (i=0; i<SIZE; i++)  { 
+            if(strcmp(nome[i], nomePesquisa)==0){
+                printf("\nNome: %s", nome[i]);
+                printf("\nQuantidade: %d", quantidade[i]);
+                printf("\nValor: %.2f\n", preço[i]);
+                pesquisa();
+            }
+        }
+        printf("Produto não encontrado. Tente novamente!\n");
+        pesquisa();
+    } else{
+        main();
+    }
+}
+
+
+void listar(){
+    int i;
+    printf("Listar todos os produtos da lista?\n1- Sim\n2- Não (retorna ao menu)\n");
+    scanf("\n %d", &op);
+    
+    if(op==1){
+        for(i=0; i<SIZE; i++){
+            printf("\nNome: %s", nome[i]);
+            printf("\nQuantidade: %d", quantidade[i]);
+            printf("\nValor: %.2f\n", preço[i]);
+            listar();
+        }
+    } else {
+        main();
+    }
+}
+
+void fechar(){
+    printf("Deseja encerrar o programa?\n1- Não (retorna ao menu)\n2- Sim\n");
+    scanf("%d", &op);
+    
+    switch(op){
+        case 1:
+            main();
+        break;
+        
+    }
+}
