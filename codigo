@@ -80,7 +80,7 @@ void cadastro(){
         printf("\nDigite a quantidade do produto:");
         scanf("%d", &quantidade[linha]);
         printf("\nDigite o valor do produto:");
-        scanf("%.2f", &preço[linha]);
+        scanf("%f", &preço[linha]);
         printf("\nProduto cadastrado com sucesso!\n");
         linha++;
         cadastro();
@@ -106,7 +106,7 @@ void pesquisa(){
             if(strcmp(nome[i], nomePesquisa)==0){
                 printf("\nNome: %s", nome[i]);
                 printf("\nQuantidade: %d", quantidade[i]);
-                printf("\nValor: %.2f\n", preço[i]);
+                printf("\nValor: %f\n", preço[i]);
                 pesquisa();
             }
         }
@@ -127,7 +127,7 @@ void listar(){
         for(i=0; i<SIZE; i++){
             printf("\nNome: %s", nome[i]);
             printf("\nQuantidade: %d", quantidade[i]);
-            printf("\nValor: %.2f\n", preço[i]);
+            printf("\nValor: %f\n", preço[i]);
             listar();
         }
     } else {
